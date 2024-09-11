@@ -49,3 +49,7 @@ c4 = new rpg.Character();
 c4.level = 6;
 c.attack(c4);
 testEquals(c4.health, 1000 - c.damageAmount * .5, 'If the target is 5 or more Levels above the attacker, Damage is reduced by 50%');
+
+c5 = new rpg.Character();
+c4.attack(c5);
+testEquals(c5.health, 1000 - c4.damageAmount * 1.5, 'If the target is 5 or more Levels below the attacker, Damage is increased by 50%');

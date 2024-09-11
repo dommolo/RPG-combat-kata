@@ -19,7 +19,7 @@
 - [X] Healing cannot raise health above 1000
 - [X] A Character cannot Deal Damage to itself
 - [X] If the target is 5 or more Levels above the attacker, Damage is reduced by 50%
-- [ ] If the target is 5 or more Levels below the attacker, Damage is increased by 50%
+- [X] If the target is 5 or more Levels below the attacker, Damage is increased by 50%
 - [ ] Characters have an attack Max Range
 - [ ] Melee fighters have a range of 2 meters
 - [ ] Ranged fighters have a range of 20 meters

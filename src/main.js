@@ -19,6 +19,8 @@ function Character() {
     var realDamageAmount = c.damageAmount;
     if (this.level >= c.level + 5)
       realDamageAmount *= .5;
+    else if (this.level <= c.level - 5)
+      realDamageAmount *= 1.5;
     
     if (realDamageAmount >= this.health) {
       this.health = 0;
