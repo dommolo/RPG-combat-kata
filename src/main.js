@@ -22,7 +22,8 @@ function Character() {
   };
   
   this.healFrom = function(c) {
-    this.health += c.healAmount;
+    if (this.alive)
+      this.health += c.healAmount;
   };
 }
 
