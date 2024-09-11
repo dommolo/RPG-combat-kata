@@ -120,5 +120,18 @@ tests.push(function () {
   test(c.attackMaxRange !== undefined, 'Characters have an attack Max Range');
 });
 
+tests.push(function () {
+  var c1 = new rpg.Character(), c2 = new rpg.Character(), c3 = new rpg.Character();
+
+  c2.positionX = 2;
+  c1.attack(c2);
+
+  c3.positionX = 3;
+  c1.attack(c3);
+
+  testEquals(c2.health, 1000 - c1.damageAmount, 'Melee fighters have a range of 2 meters (1/2)');
+  testEquals(c3.health, 1000, 'Melee fighters have a range of 2 meters (2/2)');
+});
+
 for (var i in tests)
   tests[i]();

@@ -6,10 +6,15 @@ function Character() {
   this.alive = true;
   this.damageAmount = 1;
   this.healAmount = 1;
-  this.attackMaxRange = 1;
+  this.attackMaxRange = 2;
+  this.positionX = 0;
+  this.positionY = 0;
 
   this.attack = function (c) {
     if (c == this)
+      return;
+    
+    if (this.distanceFrom(c) > this.attackMaxRange)
       return;
 
     c.attackFrom(this);
@@ -43,6 +48,10 @@ function Character() {
     this.health += c.healAmount;
     if (this.health > maxHealth)
       this.health = maxHealth;
+  };
+  
+  this.distanceFrom = function(c) {
+    return Math.sqrt((this.positionX - c.positionX) ** 2 + (this.positionY - c.positionY) ** 2);
   };
 }
 
