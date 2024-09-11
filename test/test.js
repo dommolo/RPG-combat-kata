@@ -42,6 +42,9 @@ testEquals(c3.health, 1000, 'A Character can Heal a Character');
 c.heal(c2);
 testEquals(c2.health, 0, 'Dead characters cannot be healed');
 
+c3.heal(c);
+testEquals(c.health, 1000, 'Healing cannot raise health above 1000');
+
 c.attack(c);
 testEquals(c.health, 1000, 'A Character cannot Deal Damage to itself');
 

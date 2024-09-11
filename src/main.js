@@ -34,8 +34,12 @@ function Character() {
   };
   
   this.healFrom = function(c) {
-    if (this.alive)
-      this.health += c.healAmount;
+    if (!this.alive)
+      return;
+    
+    this.health += c.healAmount;
+    if (this.health > 1000)
+      this.health = 1000;
   };
 }
 
