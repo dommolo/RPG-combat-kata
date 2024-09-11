@@ -5,7 +5,15 @@ function Character() {
   this.damage = 1;
   
   this.attack = function(c) {
-    c.health -= this.damage;
+    c.attackFrom(this);
+  };
+  
+  this.attackFrom = function(c) {
+    if (c.damage >= this.health) {
+      this.health = 0;
+      this.alive = false;
+    } else
+      this.health -= c.damage;
   };
 }
 
