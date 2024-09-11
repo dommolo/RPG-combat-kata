@@ -24,3 +24,9 @@ for (var i=0; i<100; i++)
 
 test(c2.health == 0, 'When damage received exceeds current Health, Health becomes 0');
 test(!c2.alive, 'and the character is now Dead');
+
+c3 = new rpg.Character();
+c.attack(c3);
+c.heal(c3);
+
+test(c3.health == 100, 'A Character can Heal a Character');
