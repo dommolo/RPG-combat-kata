@@ -16,11 +16,15 @@ function Character() {
     if (c == this)
       return;
     
-    if (c.damageAmount >= this.health) {
+    var realDamageAmount = c.damageAmount;
+    if (this.level >= c.level + 5)
+      realDamageAmount *= .5;
+    
+    if (realDamageAmount >= this.health) {
       this.health = 0;
       this.alive = false;
     } else
-      this.health -= c.damageAmount;
+      this.health -= realDamageAmount;
   };
   
   this.heal = function(c) {
