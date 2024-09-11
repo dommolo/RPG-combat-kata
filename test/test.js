@@ -33,3 +33,6 @@ test(c3.health == 1000, 'A Character can Heal a Character');
 
 c.heal(c2);
 test(c2.health == 0, 'Dead characters cannot be healed');
+
+c.attack(c);
+test(c.health == 1000, 'A Character cannot Deal Damage to itself');

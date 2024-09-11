@@ -6,10 +6,16 @@ function Character() {
   this.healAmount = 1;
   
   this.attack = function(c) {
+    if (c == this)
+      return;
+    
     c.attackFrom(this);
   };
   
   this.attackFrom = function(c) {
+    if (c == this)
+      return;
+    
     if (c.damageAmount >= this.health) {
       this.health = 0;
       this.alive = false;
