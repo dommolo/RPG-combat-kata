@@ -12,3 +12,4 @@ test(c.health == 100, 'New characters have 1000 Health');
 test(c.level == 1, 'New characters start from level 1');
 test(c.alive !== undefined, 'Characters can be Alive or Dead');
 test(c.alive, 'New characters are Alive');
+test(typeof c.attack == 'function', 'Characters can Deal Damage to Characters');

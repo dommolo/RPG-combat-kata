@@ -11,7 +11,7 @@
 - [X] New characters start from level 1
 - [X] Characters can be Alive or Dead
 - [X] New characters are Alive
-- [ ] Characters can Deal Damage to Characters
+- [X] Characters can Deal Damage to Characters
 - [ ] Damage is subtracted from Health
 - [ ] When damage received exceeds current Health, Health becomes 0 and the character is now Dead
 - [ ] A Character can Heal a Character
