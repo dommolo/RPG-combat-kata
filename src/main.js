@@ -1,5 +1,5 @@
 function Character() {
-  this.health = 100;
+  this.health = 1000;
   this.level = 1;
   this.alive = true;
   this.damageAmount = 1;
