@@ -6,6 +6,7 @@ function Character() {
   this.alive = true;
   this.damageAmount = 1;
   this.healAmount = 1;
+  this.attackMaxRange = 1;
 
   this.attack = function (c) {
     if (c == this)

@@ -114,5 +114,11 @@ tests.push(function () {
   testEquals(c1.health, 1000 - c2.damageAmount * 1.5, 'If the target is 5 or more Levels below the attacker, Damage is increased by 50%');
 });
 
+tests.push(function () {
+  var c = new rpg.Character();
+
+  test(c.attackMaxRange !== undefined, 'Characters have an attack Max Range');
+});
+
 for (var i in tests)
   tests[i]();
