@@ -8,7 +8,7 @@
 
 - [X] Characters can be created
 - [X] New characters have 1000 Health
-- [ ] New characters start from level 1
+- [X] New characters start from level 1
 - [ ] Characters can be Alive or Dead
 - [ ] New characters are Alive
 - [ ] Characters can Deal Damage to Characters

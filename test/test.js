@@ -9,3 +9,4 @@ c = new rpg.Character();
 
 test(c, 'Characters can be created');
 test(c.health == 100, 'New characters have 1000 Health');
+test(c.level == 1, 'New characters start from level 1');
