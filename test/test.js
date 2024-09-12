@@ -1,139 +1,128 @@
+var tester = require('./model/Tester.js');
 var rpg = require('../src/main.js');
 
-function test(item, message) {
-  console.log('- ' + message);
-  console.assert(item);
-}
+var tests = new tester.Tester();
 
-function testEquals(actual, expected, message) {
-  var out = expected == actual;
-  console.log('- ' + message);
-  console.assert(out);
-  if (!out)
-    console.log('Expected value: ' + expected + ', actual value: ' + actual);
-}
-
-var tests = [];
-
-tests.push(function () {
+tests.add('Characters can be created', function (test) {
   var c = new rpg.Character();
 
-  test(c, 'Characters can be created');
+  test.assertTrue(!!c, 'character created is not valid');
 });
 
-tests.push(function () {
+tests.add('New characters have 1000 Health', function (test) {
   var c = new rpg.Character();
 
-  testEquals(c.health, 1000, 'New characters have 1000 Health');
+  test.assertEquals(c.health, 1000, 'initial health is not 1000');
 });
-tests.push(function () {
+
+tests.add('New characters start from level 1', function (test) {
   var c = new rpg.Character();
 
-  testEquals(c.level, 1, 'New characters start from level 1');
+  test.assertEquals(c.level, 1, 'initial level is not 1');
 });
 
-tests.push(function () {
+tests.add('Characters can be Alive or Dead', function (test) {
   var c = new rpg.Character();
 
-  test(c.alive !== undefined, 'Characters can be Alive or Dead');
+  test.assertTrue(c.alive !== undefined, 'character has not alive property');
 });
 
-tests.push(function () {
+tests.add('New characters are Alive', function (test) {
   var c = new rpg.Character();
 
-  test(c.alive, 'New characters are Alive');
+  test.assertTrue(c.alive, 'new character is not alive');
 });
 
-tests.push(function () {
+tests.add('Characters can Deal Damage to Characters', function (test) {
   var c = new rpg.Character();
 
-  test(typeof c.attack == 'function', 'Characters can Deal Damage to Characters');
+  test.assertTrue(typeof c.attack == 'function', 'character has not attack function');
 });
 
-tests.push(function () {
+tests.add('Damage is subtracted from Health', function (test) {
   var c1 = new rpg.Character(), c2 = new rpg.Character();
   c1.attack(c2);
 
-  test(c2.health < 1000, 'Damage is subtracted from Health');
+  test.assertTrue(c2.health < 1000, 'attack does not subtract damage');
 });
 
-tests.push(function () {
+tests.add('When damage received exceeds current Health, Health becomes 0 and the character is now Dead', function (test) {
   var c1 = new rpg.Character(), c2 = new rpg.Character();
-  for (var i = 0; i < 1000; i++)
+  for (var i = 0; i < 1001; i++)
     c1.attack(c2);
 
-  testEquals(c2.health, 0, 'When damage received exceeds current Health, Health becomes 0');
-  test(!c2.alive, 'and the character is now Dead');
+  test.assertEquals(c2.health, 0, 'health is not 0');
+  test.assertTrue(!c2.alive, 'character is still alive');
 });
 
-tests.push(function () {
+tests.add('A Character can Heal a Character', function (test) {
   var c1 = new rpg.Character(), c2 = new rpg.Character();
   c2.health = 999;
   c1.heal(c2);
 
-  testEquals(c2.health, 1000, 'A Character can Heal a Character');
+  test.assertEquals(c2.health, 1000, 'heal does not restore health');
 });
 
-tests.push(function () {
+tests.add('Dead characters cannot be healed', function (test) {
   var c1 = new rpg.Character(), c2 = new rpg.Character();
   c2.health = 0;
   c2.alive = false;
   c1.heal(c2);
 
-  testEquals(c2.health, 0, 'Dead characters cannot be healed');
+  test.assertEquals(c2.health, 0, 'dead character has been healed');
 });
 
-tests.push(function () {
+tests.add('Healing cannot raise health above 1000', function (test) {
   var c1 = new rpg.Character(), c2 = new rpg.Character();
   c2.heal(c1);
 
-  testEquals(c1.health, 1000, 'Healing cannot raise health above 1000');
+  test.assertEquals(c1.health, 1000, 'healing raise health above 1000');
 });
 
-tests.push(function () {
+tests.add('A Character cannot Deal Damage to itself', function (test) {
   var c = new rpg.Character();
   c.attack(c);
 
-  testEquals(c.health, 1000, 'A Character cannot Deal Damage to itself');
+  test.assertEquals(c.health, 1000, 'character healed himself');
 });
 
-tests.push(function () {
+tests.add('If the target is 5 or more Levels above the attacker, Damage is reduced by 50%', function (test) {
   var c1 = new rpg.Character(), c2 = new rpg.Character();
 
   c2.level = 6;
   c1.attack(c2);
 
-  testEquals(c2.health, 1000 - c1.damageAmount * .5, 'If the target is 5 or more Levels above the attacker, Damage is reduced by 50%');
+  test.assertEquals(c2.health, 1000 - c1.damageAmount * .5, 'damage is not reduced by 50%');
 });
 
-tests.push(function () {
+tests.add('If the target is 5 or more Levels below the attacker, Damage is increased by 50%', function (test) {
   var c1 = new rpg.Character(), c2 = new rpg.Character();
   c2.level = 6;
   c2.attack(c1);
 
-  testEquals(c1.health, 1000 - c2.damageAmount * 1.5, 'If the target is 5 or more Levels below the attacker, Damage is increased by 50%');
+  test.assertEquals(c1.health, 1000 - c2.damageAmount * 1.5, 'damage is not increased by 50%');
 });
 
-tests.push(function () {
+tests.add('Characters have an attack Max Range', function (test) {
   var c = new rpg.Character();
 
-  test(typeof c.attack == 'function', 'Characters have an attack Max Range');
+  test.assertTrue(typeof c.getMaxAttackRange == 'function', 'character has not max attach range getter');
 });
 
-tests.push(function () {
+tests.add('Melee fighters have a range of 2 meters', function (test) {
   var c = new rpg.Character();
 
-  testEquals(c.getMaxAttackRange(), 2, 'Melee fighters have a range of 2 meters');
+  test.assertEquals(c.getMaxAttackRange(), 2, 'max attack range is not 2');
 });
 
-tests.push(function () {
+tests.add('Ranged fighters have a range of 20 meters', function (test) {
   var c = new rpg.Character();
   c.hasRangedWeapon = true;
 
-  testEquals(c.getMaxAttackRange(), 20, 'Ranged fighters have a range of 20 meters');
+  test.assertEquals(c.getMaxAttackRange(), 20, 'max attack range is not 20');
 });
 
-tests.push(function () {
+tests.add('Characters must be in range to deal damage to a target', function (test) {
   var c1 = new rpg.Character(), c2 = new rpg.Character(), c3 = new rpg.Character();
 
   c2.positionX = 2;
@@ -142,60 +131,57 @@ tests.push(function () {
   c3.positionX = 3;
   c1.attack(c3);
 
-  testEquals(c2.health, 1000 - c1.damageAmount, 'Characters must be in range to deal damage to a target (1/2)');
-  testEquals(c3.health, 1000, 'Characters must be in range to deal damage to a target (2/2)');
+  test.assertEquals(c2.health, 1000 - c1.damageAmount, 'character in range has not been damaged');
+  test.assertEquals(c3.health, 1000, 'character out of range has been damaged');
 });
 
-tests.push(function () {
+tests.add('Factions can be created', function (test) {
   var f = new rpg.Faction();
 
-  test(f, 'Factions can be created');
+  test.assertTrue(f, 'faction created is not valid');
 });
 
-tests.push(function () {
+tests.add('Characters may belong to one or more Factions', function (test) {
   var c = new rpg.Character();
   var f1 = new rpg.Faction();
   var f2 = new rpg.Faction();
 
   c.join(f1);
-
-  test(c.factions.indexOf(f1) > -1, 'Characters may belong to one');
-
   c.join(f2);
 
-  test(c.factions.indexOf(f2) > -1, 'more Factions');
+  test.assertTrue(c.memberOf(f1), 'character does not belong to first faction');
+  test.assertTrue(c.memberOf(f2), 'character does not belong to second faction');
 });
 
-tests.push(function() {
+tests.add('New Characters belong to no Faction', function (test) {
   var c = new rpg.Character();
-  
-  testEquals(c.factions.length, 0, 'New Characters belong to no Faction');
+
+  test.assertEquals(c.factions.length, 0, 'new characters belong to one or more factions');
 });
 
-tests.push(function() {
+tests.add('A Character may Leave one or more Factions', function (test) {
   var c = new rpg.Character();
   var f = new rpg.Faction();
 
   c.join(f);
   c.leave(f);
 
-  test(c.factions.indexOf(f) == -1, 'A Character may Leave one or more Factions');
+  test.assertFalse(c.memberOf(f), 'character does not leave faction');
 });
 
-tests.push(function() {
+tests.add('Players belonging to the same Faction are considered Allies', function (test) {
   var c1 = new rpg.Character();
   var c2 = new rpg.Character();
   var c3 = new rpg.Character();
   var f1 = new rpg.Faction();
   var f2 = new rpg.Faction();
-  
+
   c1.join(f1);
   c2.join(f1);
   c3.join(f2);
-  
-  test(c1.isAlliedOf(c2), 'Players belonging to the same Faction are considered Allies (1/2)');
-  test(!c1.isAlliedOf(c3), 'Players belonging to the same Faction are considered Allies (2/2)');
+
+  test.assertTrue(c1.isAlliedOf(c2), 'characters with a common faction are not allies');
+  test.assertTrue(!c1.isAlliedOf(c3), 'characters of different factions are allies');
 });
 
-for (var i in tests)
-  tests[i]();
+tests.run();
