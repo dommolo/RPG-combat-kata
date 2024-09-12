@@ -184,41 +184,49 @@ tests.add('Players belonging to the same Faction are considered Allies', functio
   test.assertTrue(!c1.isAlliedOf(c3), 'characters of different factions are allies');
 });
 
-tests.add('Allies cannot Deal Damage to one another', function(test) {
+tests.add('Allies cannot Deal Damage to one another', function (test) {
   var c1 = new rpg.Character();
   var c2 = new rpg.Character();
   var f = new rpg.Faction();
-  
+
   c1.join(f);
   c2.join(f);
   c1.attack(c2);
-  
+
   test.assertEquals(c2.health, 1000, 'allies can deal damage to one another');
 });
 
-tests.add('Allies can Heal one another', function(test) {
+tests.add('Allies can Heal one another', function (test) {
   var c1 = new rpg.Character();
   var c2 = new rpg.Character();
   var f = new rpg.Faction();
-  
+
   c2.health = 999;
   c1.join(f);
   c2.join(f);
   c1.heal(c2);
-  
+
   test.assertEquals(c2.health, 1000, 'allies cannot heal one another');
 });
 
-tests.add('Things can be created', function(test) {
+tests.add('Things can be created', function (test) {
   var t = new rpg.Thing();
-  
+
   test.assertTrue(!!t, 'thing created is not valid');
 });
 
-tests.add('Newly created Things must have a name (e.g. "Tree")', function(test) {
+tests.add('Newly created Things must have a name (e.g. "Tree")', function (test) {
   var t = new rpg.Thing('Tree');
-  
+
   test.assertEquals(t.name, 'Tree', 'thing name is not valid');
+});
+
+tests.add('Newly created Things can have any Health > 1 (e.g. 2000)', function (test) {
+  var t1 = new rpg.Thing('Tree', 2000);
+  var t2 = new rpg.Thing('Bush', 0);
+
+  test.assertEquals(t1.health, 2000, 'thing health is not correct');
+  test.assertTrue(t2.health > 1, 'thing health 1 or lower');
 });
 
 tests.run();
