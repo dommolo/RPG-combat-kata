@@ -1,12 +1,15 @@
 var maxHealth = 1000;
 
 function Character() {
-  this.health = maxHealth;
   this.level = 1;
+  
+  this.health = maxHealth;
   this.alive = true;
+  
   this.damageAmount = 1;
   this.healAmount = 1;
-  this.attackMaxRange = 2;
+  
+  this.hasRangedWeapon = false;
 
   this.attack = function (c) {
     if (c == this)
@@ -43,6 +46,10 @@ function Character() {
     this.health += c.healAmount;
     if (this.health > maxHealth)
       this.health = maxHealth;
+  };
+  
+  this.getMaxAttackRange = function() {
+    return this.hasRangedWeapon ? 20 : 2;
   };
 }
 
