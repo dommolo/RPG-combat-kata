@@ -21,6 +21,9 @@ function Character() {
 
     if (this.distanceFrom(c) > this.getMaxAttackRange())
       return;
+    
+    if (this.isAlliedOf(c))
+      return;
 
     c.attackFrom(this);
   };

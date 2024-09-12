@@ -184,4 +184,16 @@ tests.add('Players belonging to the same Faction are considered Allies', functio
   test.assertTrue(!c1.isAlliedOf(c3), 'characters of different factions are allies');
 });
 
+tests.add('Allies cannot Deal Damage to one another', function(test) {
+  var c1 = new rpg.Character();
+  var c2 = new rpg.Character();
+  var f = new rpg.Faction();
+  
+  c1.join(f);
+  c2.join(f);
+  c1.attack(c2);
+  
+  test.assertEquals(c2.health, 1000, 'allies can deal damage to one another');
+});
+
 tests.run();

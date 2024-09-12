@@ -30,7 +30,7 @@
 - [X] A Character may Join one or more Factions
 - [X] A Character may Leave one or more Factions
 - [X] Players belonging to the same Faction are considered Allies
-- [ ] Allies cannot Deal Damage to one another
+- [X] Allies cannot Deal Damage to one another
 - [ ] Allies can Heal one another
 - [ ] Things can be created
 - [ ] Newly created Things must have a name (e.g. "Tree")
