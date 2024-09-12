@@ -1,20 +1,24 @@
 var maxHealth = 1000;
 
 function Character() {
-  this.health = maxHealth;
   this.level = 1;
+
+  this.health = maxHealth;
   this.alive = true;
+
   this.damageAmount = 1;
   this.healAmount = 1;
-  this.attackMaxRange = 2;
+
   this.positionX = 0;
   this.positionY = 0;
+
+  this.hasRangedWeapon = false;
 
   this.attack = function (c) {
     if (c == this)
       return;
-    
-    if (this.distanceFrom(c) > this.attackMaxRange)
+
+    if (this.distanceFrom(c) > this.getMaxAttackRange())
       return;
 
     c.attackFrom(this);
@@ -49,9 +53,13 @@ function Character() {
     if (this.health > maxHealth)
       this.health = maxHealth;
   };
-  
-  this.distanceFrom = function(c) {
+
+  this.distanceFrom = function (c) {
     return Math.sqrt((this.positionX - c.positionX) ** 2 + (this.positionY - c.positionY) ** 2);
+  };
+
+  this.getMaxAttackRange = function () {
+    return this.hasRangedWeapon ? 20 : 2;
   };
 }
 

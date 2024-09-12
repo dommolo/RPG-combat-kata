@@ -117,7 +117,20 @@ tests.push(function () {
 tests.push(function () {
   var c = new rpg.Character();
 
-  test(c.attackMaxRange !== undefined, 'Characters have an attack Max Range');
+  test(typeof c.attack == 'function', 'Characters have an attack Max Range');
+});
+
+tests.push(function() {
+  var c = new rpg.Character();
+
+  testEquals(c.getMaxAttackRange(), 2, 'Melee fighters have a range of 2 meters');
+});
+
+tests.push(function() {
+  var c = new rpg.Character();
+  c.hasRangedWeapon = true;
+  
+  testEquals(c.getMaxAttackRange(), 20, 'Ranged fighters have a range of 20 meters');
 });
 
 tests.push(function () {
