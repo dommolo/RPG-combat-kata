@@ -26,7 +26,7 @@
 - [X] Characters must be in range to deal damage to a target
 - [X] Factions can be created
 - [X] Characters may belong to one or more Factions
-- [ ] New Characters belong to no Faction
+- [X] New Characters belong to no Faction
 - [ ] A Character may Join one or more Factions
 - [ ] A Character may Leave one or more Factions
 - [ ] Players belonging to the same Faction are considered Allies

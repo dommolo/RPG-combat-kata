@@ -166,5 +166,11 @@ tests.push(function () {
   test(c.factions.indexOf(f2) > -1, 'more Factions');
 });
 
+tests.push(function() {
+  var c = new rpg.Character();
+  
+  testEquals(c.factions.length, 0, 'New Characters belong to no Faction');
+});
+
 for (var i in tests)
   tests[i]();
