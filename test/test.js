@@ -172,5 +172,15 @@ tests.push(function() {
   testEquals(c.factions.length, 0, 'New Characters belong to no Faction');
 });
 
+tests.push(function() {
+  var c = new rpg.Character();
+  var f = new rpg.Faction();
+
+  c.join(f);
+  c.leave(f);
+
+  test(c.factions.indexOf(f) == -1, 'A Character may Leave one or more Factions');
+});
+
 for (var i in tests)
   tests[i]();

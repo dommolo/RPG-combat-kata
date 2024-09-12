@@ -66,6 +66,12 @@ function Character() {
   this.join = function(f) {
     this.factions.push(f);
   };
+  
+  this.leave = function(f) {
+    var index = this.factions.indexOf(f);
+    if (index > -1)
+      this.factions.splice(index, 1);
+  };
 }
 
 module.exports = {
