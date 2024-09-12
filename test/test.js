@@ -196,4 +196,17 @@ tests.add('Allies cannot Deal Damage to one another', function(test) {
   test.assertEquals(c2.health, 1000, 'allies can deal damage to one another');
 });
 
+tests.add('Allies can Heal one another', function(test) {
+  var c1 = new rpg.Character();
+  var c2 = new rpg.Character();
+  var f = new rpg.Faction();
+  
+  c2.health = 999;
+  c1.join(f);
+  c2.join(f);
+  c1.heal(c2);
+  
+  test.assertEquals(c2.health, 1000, 'allies cannot heal one another');
+});
+
 tests.run();

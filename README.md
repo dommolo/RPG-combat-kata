@@ -31,7 +31,7 @@
 - [X] A Character may Leave one or more Factions
 - [X] Players belonging to the same Faction are considered Allies
 - [X] Allies cannot Deal Damage to one another
-- [ ] Allies can Heal one another
+- [X] Allies can Heal one another
 - [ ] Things can be created
 - [ ] Newly created Things must have a name (e.g. "Tree")
 - [ ] Newly created Things can have any Health > 1 (e.g. 2000)
