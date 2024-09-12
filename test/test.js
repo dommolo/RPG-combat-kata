@@ -129,8 +129,8 @@ tests.push(function () {
   c3.positionX = 3;
   c1.attack(c3);
 
-  testEquals(c2.health, 1000 - c1.damageAmount, 'Melee fighters have a range of 2 meters (1/2)');
-  testEquals(c3.health, 1000, 'Melee fighters have a range of 2 meters (2/2)');
+  testEquals(c2.health, 1000 - c1.damageAmount, 'Characters must be in range to deal damage to a target (1/2)');
+  testEquals(c3.health, 1000, 'Characters must be in range to deal damage to a target (2/2)');
 });
 
 for (var i in tests)
