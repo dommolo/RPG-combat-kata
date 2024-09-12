@@ -215,4 +215,10 @@ tests.add('Things can be created', function(test) {
   test.assertTrue(!!t, 'thing created is not valid');
 });
 
+tests.add('Newly created Things must have a name (e.g. "Tree")', function(test) {
+  var t = new rpg.Thing('Tree');
+  
+  test.assertEquals(t.name, 'Tree', 'thing name is not valid');
+});
+
 tests.run();
