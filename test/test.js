@@ -138,7 +138,7 @@ tests.add('Characters must be in range to deal damage to a target', function (te
 tests.add('Factions can be created', function (test) {
   var f = new rpg.Faction();
 
-  test.assertTrue(f, 'faction created is not valid');
+  test.assertTrue(!!f, 'faction created is not valid');
 });
 
 tests.add('Characters may belong to one or more Factions', function (test) {
@@ -207,6 +207,12 @@ tests.add('Allies can Heal one another', function(test) {
   c1.heal(c2);
   
   test.assertEquals(c2.health, 1000, 'allies cannot heal one another');
+});
+
+tests.add('Things can be created', function(test) {
+  var t = new rpg.Thing();
+  
+  test.assertTrue(!!t, 'thing created is not valid');
 });
 
 tests.run();
