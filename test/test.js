@@ -146,5 +146,11 @@ tests.push(function () {
   testEquals(c3.health, 1000, 'Characters must be in range to deal damage to a target (2/2)');
 });
 
+tests.push(function() {
+  var f = new rpg.Faction();
+  
+  test(f, 'Factions can be created');
+});
+
 for (var i in tests)
   tests[i]();
