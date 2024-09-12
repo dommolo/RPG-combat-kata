@@ -182,5 +182,20 @@ tests.push(function() {
   test(c.factions.indexOf(f) == -1, 'A Character may Leave one or more Factions');
 });
 
+tests.push(function() {
+  var c1 = new rpg.Character();
+  var c2 = new rpg.Character();
+  var c3 = new rpg.Character();
+  var f1 = new rpg.Faction();
+  var f2 = new rpg.Faction();
+  
+  c1.join(f1);
+  c2.join(f1);
+  c3.join(f2);
+  
+  test(c1.isAlliedOf(c2), 'Players belonging to the same Faction are considered Allies (1/2)');
+  test(!c1.isAlliedOf(c3), 'Players belonging to the same Faction are considered Allies (2/2)');
+});
+
 for (var i in tests)
   tests[i]();

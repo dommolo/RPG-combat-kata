@@ -62,15 +62,26 @@ function Character() {
   this.getMaxAttackRange = function () {
     return this.hasRangedWeapon ? 20 : 2;
   };
-  
-  this.join = function(f) {
+
+  this.join = function (f) {
     this.factions.push(f);
   };
-  
-  this.leave = function(f) {
+
+  this.leave = function (f) {
     var index = this.factions.indexOf(f);
     if (index > -1)
       this.factions.splice(index, 1);
+  };
+
+  this.memberOf = function (f) {
+    return this.factions.indexOf(f) > -1;
+  };
+
+  this.isAlliedOf = function (c) {
+    for (var i in this.factions)
+      if (c.memberOf(this.factions[i]))
+        return true;
+    return false;
   };
 }
 
