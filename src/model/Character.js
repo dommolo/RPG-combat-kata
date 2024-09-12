@@ -2,6 +2,7 @@ var maxHealth = 1000;
 
 function Character() {
   this.level = 1;
+  this.factions = [];
 
   this.health = maxHealth;
   this.alive = true;
@@ -60,6 +61,10 @@ function Character() {
 
   this.getMaxAttackRange = function () {
     return this.hasRangedWeapon ? 20 : 2;
+  };
+  
+  this.join = function(f) {
+    this.factions.push(f);
   };
 }
 

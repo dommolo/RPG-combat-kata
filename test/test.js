@@ -120,16 +120,16 @@ tests.push(function () {
   test(typeof c.attack == 'function', 'Characters have an attack Max Range');
 });
 
-tests.push(function() {
+tests.push(function () {
   var c = new rpg.Character();
 
   testEquals(c.getMaxAttackRange(), 2, 'Melee fighters have a range of 2 meters');
 });
 
-tests.push(function() {
+tests.push(function () {
   var c = new rpg.Character();
   c.hasRangedWeapon = true;
-  
+
   testEquals(c.getMaxAttackRange(), 20, 'Ranged fighters have a range of 20 meters');
 });
 
@@ -146,10 +146,24 @@ tests.push(function () {
   testEquals(c3.health, 1000, 'Characters must be in range to deal damage to a target (2/2)');
 });
 
-tests.push(function() {
+tests.push(function () {
   var f = new rpg.Faction();
-  
+
   test(f, 'Factions can be created');
+});
+
+tests.push(function () {
+  var c = new rpg.Character();
+  var f1 = new rpg.Faction();
+  var f2 = new rpg.Faction();
+
+  c.join(f1);
+
+  test(c.factions.indexOf(f1) > -1, 'Characters may belong to one');
+
+  c.join(f2);
+
+  test(c.factions.indexOf(f2) > -1, 'more Factions');
 });
 
 for (var i in tests)
