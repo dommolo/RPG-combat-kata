@@ -5,6 +5,10 @@ class Thing extends attackable.Attackable {
     super(x, y, health);
     this.name = name;
   }
+
+  healFrom(_) {
+    return;
+  }
 }
 
 module.exports = {

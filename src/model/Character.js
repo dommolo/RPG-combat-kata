@@ -1,4 +1,5 @@
 var attackable = require('./Attackable.js');
+var thing = require('./Thing.js');
 
 class Character extends attackable.Attackable {
   constructor(x, y) {

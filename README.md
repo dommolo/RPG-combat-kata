@@ -36,7 +36,7 @@
 - [X] Newly created Things must have a name (e.g. "Tree")
 - [X] Newly created Things can have any Health >= 1 (e.g. 2000)
 - [X] Characters can damage Things
-- [ ] These things cannot be Healed and they do not Deal Damage
+- [X] These things cannot be Healed and they do not Deal Damage
 - [ ] These things do not belong to Factions; they are neutral
 - [ ] When reduced to 0 Health, things are *Destroyed*
 - [ ] Magical Objects can be created

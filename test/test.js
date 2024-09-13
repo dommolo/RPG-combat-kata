@@ -220,7 +220,7 @@ tests.add('Newly created Things must have a name (e.g. "Tree")', function (test)
   test.assertEquals(t.name, 'Tree', 'thing name is not valid');
 });
 
-tests.add('Newly created Things can have any Health > 1 (e.g. 2000)', function (test) {
+tests.add('Newly created Things can have any Health >= 1 (e.g. 2000)', function (test) {
   var t1 = new rpg.Thing(0, 0, 2000, 'Tree');
   var t2 = new rpg.Thing(0, 0, 1000, 'Bush');
 
@@ -235,6 +235,17 @@ tests.add('Characters can damage Things', function (test) {
   c.attack(t);
 
   test.assertTrue(t.health < 10, 'character cannot damage thing');
+});
+
+tests.add('These things cannot be Healed and they do not Deal Damage', function(test) {
+  var c = new rpg.Character(0, 0);
+  var t = new rpg.Thing(0, 0, 'Table', 10);
+
+  t.health = 9;
+  c.heal(t);
+
+  test.assertEquals(t.health, 9, 'thing can be healed');
+  test.assertTrue(t.attack == undefined, 'thing have attack function');
 });
 
 tests.run();
