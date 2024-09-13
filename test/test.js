@@ -264,4 +264,10 @@ tests.add('When reduced to 0 Health, things are *Destroyed*', function(test) {
   test.assertTrue(t.destroyed, 'things are not destroyed with health 0');
 });
 
+tests.add('Magical Objects can be created', function(test) {
+  var m = new rpg.MagicalObject();
+
+  test.assertTrue(m != undefined, 'magical object cannot be created');
+});
+
 tests.run();

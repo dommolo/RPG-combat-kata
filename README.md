@@ -38,8 +38,8 @@
 - [X] Characters can damage Things
 - [X] These things cannot be Healed and they do not Deal Damage
 - [X] These things do not belong to Factions; they are neutral
-- [ ] When reduced to 0 Health, things are *Destroyed*
-- [ ] Magical Objects can be created
+- [X] When reduced to 0 Health, things are *Destroyed*
+- [X] Magical Objects can be created
 - [ ] Magical Objects have Health
 - [ ] The maximum amount of Health is fixed at the time the object is created
 - [ ] When reduced to 0 Health, Magical Objects are Destroyed
