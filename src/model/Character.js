@@ -1,34 +1,38 @@
-var maxHealth = 1000;
+var attackable = require('./Attackable.js');
 
-function Character() {
-  this.level = 1;
-  this.factions = [];
+class Character extends attackable.Attackable {
+  constructor(x, y) {
+    super(x, y, 1000);
 
-  this.health = maxHealth;
-  this.alive = true;
+    this.level = 1;
 
-  this.damageAmount = 1;
-  this.healAmount = 1;
+    this.damageAmount = 1;
+    this.healAmount = 1;
 
-  this.positionX = 0;
-  this.positionY = 0;
+    this.factions = [];
 
-  this.hasRangedWeapon = false;
+    this.hasRangedWeapon = false;
+  }
 
-  this.attack = function (c) {
+  attack(c) {
     if (c == this)
+      return;
+
+    if (!(c instanceof attackable.Attackable))
       return;
 
     if (this.distanceFrom(c) > this.getMaxAttackRange())
       return;
-    
-    if (this.isAlliedOf(c))
-      return;
 
-    c.attackFrom(this);
-  };
+    if (c instanceof Character) {
+      if (this.isAlliedOf(c))
+        return;
 
-  this.attackFrom = function (c) {
+      c.attackFrom(this);
+    }
+  }
+
+  attackFrom(c) {
     if (c == this)
       return;
 
@@ -38,54 +42,41 @@ function Character() {
     else if (this.level <= c.level - 5)
       realDamageAmount *= 1.5;
 
-    if (realDamageAmount >= this.health) {
-      this.health = 0;
-      this.alive = false;
-    } else
-      this.health -= realDamageAmount;
-  };
+    this.attacked(realDamageAmount);
+  }
 
-  this.heal = function (c) {
+  heal(c) {
     c.healFrom(this);
-  };
+  }
 
-  this.healFrom = function (c) {
-    if (!this.alive)
-      return;
+  healFrom(c) {
+    this.healed(c.healAmount);
+  }
 
-    this.health += c.healAmount;
-    if (this.health > maxHealth)
-      this.health = maxHealth;
-  };
-
-  this.distanceFrom = function (c) {
-    return Math.sqrt((this.positionX - c.positionX) ** 2 + (this.positionY - c.positionY) ** 2);
-  };
-
-  this.getMaxAttackRange = function () {
-    return this.hasRangedWeapon ? 20 : 2;
-  };
-
-  this.join = function (f) {
+  join(f) {
     this.factions.push(f);
-  };
+  }
 
-  this.leave = function (f) {
+  getMaxAttackRange() {
+    return this.hasRangedWeapon ? 20 : 2;
+  }
+
+  leave(f) {
     var index = this.factions.indexOf(f);
     if (index > -1)
       this.factions.splice(index, 1);
-  };
+  }
 
-  this.memberOf = function (f) {
+  memberOf(f) {
     return this.factions.indexOf(f) > -1;
-  };
+  }
 
-  this.isAlliedOf = function (c) {
+  isAlliedOf(c) {
     for (var i in this.factions)
       if (c.memberOf(this.factions[i]))
         return true;
     return false;
-  };
+  }
 }
 
 module.exports = {

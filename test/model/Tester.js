@@ -45,7 +45,7 @@ function Test(name, testFunction) {
     }.bind(this));
   };
 
-  this.assertEquals = function (expected, actual, failMessage) {
+  this.assertEquals = function (actual, expected, failMessage) {
     this.assertions.push(function () {
       var out = expected == actual;
 
