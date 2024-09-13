@@ -265,21 +265,31 @@ tests.add('When reduced to 0 Health, things are *Destroyed*', function(test) {
 });
 
 tests.add('Magical Objects can be created', function(test) {
-  var m = new rpg.MagicalObject(3);
+  var m = new rpg.MagicalObject(0, 0, 3);
 
   test.assertTrue(!!m, 'magical object created is not valid');
 });
 
 tests.add('Magical Objects have Health', function(test) {
-  var m = new rpg.MagicalObject(3);
+  var m = new rpg.MagicalObject(0, 0, 3);
 
   test.assertTrue(m.health != undefined, 'magical object has no health');
 });
 
 tests.add('The maximum amount of Health is fixed at the time the object is created', function(test) {
-  var m = new rpg.MagicalObject(3);
+  var m = new rpg.MagicalObject(0, 0, 3);
 
   test.assertEquals(m.maxHealth, 3, 'max health is not correct');
+});
+
+tests.add('When reduced to 0 Health, Magical Objects are Destroyed', function(test) {
+  var m = new rpg.MagicalObject(0, 0, 3);
+  var c = new rpg.Character(0, 0);
+
+  for (var i=0; i<3; i++)
+    c.attack(m);
+
+  test.assertTrue(m.destroyed, 'magical object cannot be destroyed');
 });
 
 tests.run();

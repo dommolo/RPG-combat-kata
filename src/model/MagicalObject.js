@@ -1,7 +1,8 @@
-class MagicalObject {
-    constructor(health) {
-        this.health = health;
-        this.maxHealth = health;
+var thing = require('./Thing.js');
+
+class MagicalObject extends thing.Thing {
+    constructor(x, y, health) {
+        super(x, y, health)
     }
 }
 
