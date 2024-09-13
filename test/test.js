@@ -228,4 +228,13 @@ tests.add('Newly created Things can have any Health > 1 (e.g. 2000)', function (
   test.assertTrue(t2.health > 1, 'thing health 1 or lower');
 });
 
+tests.add('Characters can damage Things', function (test) {
+  var c = new rpg.Character(0, 0);
+  var t = new rpg.Thing(0, 0, 'Table', 10);
+
+  c.attack(t);
+
+  test.assertTrue(t.health < 10, 'character cannot damage thing');
+});
+
 tests.run();
