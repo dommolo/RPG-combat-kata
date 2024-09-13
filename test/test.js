@@ -265,9 +265,15 @@ tests.add('When reduced to 0 Health, things are *Destroyed*', function(test) {
 });
 
 tests.add('Magical Objects can be created', function(test) {
-  var m = new rpg.MagicalObject();
+  var m = new rpg.MagicalObject(3);
 
-  test.assertTrue(m != undefined, 'magical object cannot be created');
+  test.assertTrue(!!m, 'magical object created is not valid');
+});
+
+tests.add('Magical Objects have Health', function(test) {
+  var m = new rpg.MagicalObject(3);
+
+  test.assertTrue(m.health != undefined, 'magical object has no health');
 });
 
 tests.run();

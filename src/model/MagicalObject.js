@@ -1,6 +1,6 @@
 class MagicalObject {
-    constructor() {
-        
+    constructor(health) {
+        this.health = health;
     }
 }
 
