@@ -276,4 +276,10 @@ tests.add('Magical Objects have Health', function(test) {
   test.assertTrue(m.health != undefined, 'magical object has no health');
 });
 
+tests.add('The maximum amount of Health is fixed at the time the object is created', function(test) {
+  var m = new rpg.MagicalObject(3);
+
+  test.assertEquals(m.maxHealth, 3, 'max health is not correct');
+});
+
 tests.run();
