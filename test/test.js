@@ -248,4 +248,10 @@ tests.add('These things cannot be Healed and they do not Deal Damage', function(
   test.assertTrue(t.attack == undefined, 'thing have attack function');
 });
 
+tests.add('These things do not belong to Factions; they are neutral', function(test) {
+  var t = new rpg.Thing(0, 0, 2000, 'Tree');
+  
+  test.assertTrue(t.join == undefined, 'things can join factions');
+});
+
 tests.run();
