@@ -5,6 +5,7 @@ class Character extends attackable.Attackable {
   constructor(x, y) {
     super(x, y, 1000);
 
+    this.alive = true;
     this.level = 1;
 
     this.damageAmount = 1;
@@ -15,43 +16,44 @@ class Character extends attackable.Attackable {
     this.hasRangedWeapon = false;
   }
 
-  attack(c) {
-    if (c == this)
+  attack(x) {
+    if (x == this)
       return;
 
-    if (!(c instanceof attackable.Attackable))
+    if (!(x instanceof attackable.Attackable))
       return;
 
-    if (this.distanceFrom(c) > this.getMaxAttackRange())
+    if (this.distanceFrom(x) > this.getMaxAttackRange())
       return;
 
-    if (c instanceof Character) {
-      if (this.isAlliedOf(c))
+    var realDamageAmount = this.damageAmount;
+
+    if (x instanceof Character) {
+      if (this.isAlliedOf(x))
         return;
 
-      c.attackFrom(this);
+      if (x.level >= this.level + 5)
+        realDamageAmount *= .5;
+      else if (x.level <= this.level - 5)
+        realDamageAmount *= 1.5;
     }
+
+    x.attacked(realDamageAmount);
   }
 
-  attackFrom(c) {
-    if (c == this)
-      return;
+  attacked(x) {
+    super.attacked(x);
 
-    var realDamageAmount = c.damageAmount;
-    if (this.level >= c.level + 5)
-      realDamageAmount *= .5;
-    else if (this.level <= c.level - 5)
-      realDamageAmount *= 1.5;
-
-    this.attacked(realDamageAmount);
+    if (this.health == 0)
+      this.alive = false;
   }
 
-  heal(c) {
-    c.healFrom(this);
+  heal(x) {
+    x.healFrom(this);
   }
 
-  healFrom(c) {
-    this.healed(c.healAmount);
+  healFrom(x) {
+    this.healed(x.healAmount);
   }
 
   join(f) {
@@ -72,9 +74,9 @@ class Character extends attackable.Attackable {
     return this.factions.indexOf(f) > -1;
   }
 
-  isAlliedOf(c) {
+  isAlliedOf(x) {
     for (var i in this.factions)
-      if (c.memberOf(this.factions[i]))
+      if (x.memberOf(this.factions[i]))
         return true;
     return false;
   }

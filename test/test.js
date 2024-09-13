@@ -254,4 +254,14 @@ tests.add('These things do not belong to Factions; they are neutral', function(t
   test.assertTrue(t.join == undefined, 'things can join factions');
 });
 
+tests.add('When reduced to 0 Health, things are *Destroyed*', function(test) {
+  var t = new rpg.Thing(0, 0, 2000, 'Tree');
+  var c = new rpg.Character(0, 0);
+
+  for (var i=0; i<2000; i++)
+    c.attack(t);
+
+  test.assertTrue(t.destroyed, 'things are not destroyed with health 0');
+});
+
 tests.run();
