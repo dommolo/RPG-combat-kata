@@ -292,4 +292,14 @@ tests.add('When reduced to 0 Health, Magical Objects are Destroyed', function(te
   test.assertTrue(m.destroyed, 'magical object cannot be destroyed');
 });
 
+tests.add('Magical Objects cannot be Healed by Characters', function(test) {
+  var m = new rpg.MagicalObject(0, 0, 3);
+  var c = new rpg.Character(0, 0);
+
+  m.health = 2;
+  c.heal(m);
+
+  test.assertEquals(m.health, 2, 'magical object can be healed by character');
+});
+
 tests.run();
