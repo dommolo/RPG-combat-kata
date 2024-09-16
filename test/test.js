@@ -324,4 +324,15 @@ tests.add('Characters can hold one Magical Object', function(test) {
   test.assertFalse(c.equipement.indexOf(m2) > -1, 'character can hold more than one magical object');
 });
 
+tests.add('Newly created Characters hold no Magical Object', function(test) {
+  var c = new rpg.Character(0, 0);
+
+  var magicalObjectFound = false;
+  for (var i in c.equipement)
+    if (c.equipement instanceof rpg.MagicalObject)
+      magicalObjectFound = true;
+  
+  test.assertFalse(magicalObjectFound, 'newly created character has magical objects');
+});
+
 tests.run();

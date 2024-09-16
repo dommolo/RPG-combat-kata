@@ -46,7 +46,7 @@
 - [X] Magical Objects cannot be Healed by Characters
 - [X] Magical Objects do not belong to Factions; they are neutral
 - [X] Characters can hold one Magical Object
-- [ ] Newly created Characters hold no Magical Object
+- [X] Newly created Characters hold no Magical Object
 - [ ] Characters can gain health from a Healing Magical Object
 - [ ] Characters can gain any amount of health from the Object, up to its maximum and theirs
 - [ ] Healing Magical Objects cannot deal Damage
