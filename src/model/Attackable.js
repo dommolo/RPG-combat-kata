@@ -17,11 +17,13 @@ class Attackable extends positioned.Positioned {
 
     healed(healAmount) {
         if (!this.alive)
-          return;
+          return false;
         
         this.health += healAmount;
         if (this.health > this.maxHealth)
           this.health = this.maxHealth;
+
+        return true;
     }
 }
 

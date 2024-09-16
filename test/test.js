@@ -335,4 +335,29 @@ tests.add('Newly created Characters hold no Magical Object', function(test) {
   test.assertFalse(magicalObjectFound, 'newly created character has magical objects');
 });
 
+tests.add('Characters can gain health from a Healing Magical Object', function(test) {
+  var c = new rpg.Character(0, 0);
+  var m = new rpg.HealingMagicalObject(0, 0, 100);
+
+  c.health = 500;
+
+  m.heal(c);
+  test.assertEquals(c.health, 600, 'characters cannot gain health from healing magical');
+});
+
+tests.add('Characters can gain any amount of health from the Object, up to its maximum and theirs', function(test) {
+  var c1 = new rpg.Character(0, 0);
+  var c2 = new rpg.Character(0, 0);
+  var m1 = new rpg.HealingMagicalObject(0, 0, 100);
+  var m2 = new rpg.HealingMagicalObject(0, 0, 100);
+
+  c1.health = c1.maxHealth - 50;
+  m1.heal(c1);
+  test.assertEquals(c1.health, c1.maxHealth, 'characters can gain more health than his maximum');
+
+  c2.health = c2.maxHealth - 200;
+  m2.heal(c2);
+  test.assertEquals(c2.health, c2.maxHealth - 200 + m2.maxHealth, 'healing magical object can heal more than its\'s maxium');
+});
+
 tests.run();
