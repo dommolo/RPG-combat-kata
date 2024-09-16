@@ -302,4 +302,10 @@ tests.add('Magical Objects cannot be Healed by Characters', function(test) {
   test.assertEquals(m.health, 2, 'magical object can be healed by character');
 });
 
+tests.add('Magical Objects do not belong to Factions; they are neutral', function(test) {
+  var m = new rpg.MagicalObject(0, 0, 3);
+
+  test.assertTrue(m.join == undefined, 'magical object can join factions');
+});
+
 tests.run();
