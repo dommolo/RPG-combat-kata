@@ -308,4 +308,20 @@ tests.add('Magical Objects do not belong to Factions; they are neutral', functio
   test.assertTrue(m.join == undefined, 'magical object can join factions');
 });
 
+tests.add('Characters can hold one Magical Object', function(test) {
+  var m1 = new rpg.MagicalObject(0, 0, 3);
+  var m2 = new rpg.MagicalObject(0, 0, 3);
+  var c = new rpg.Character(0, 0);
+
+  test.assertFalse(c.equip == undefined, 'character equip function is not valid');
+
+  c.equip(m1)
+
+  test.assertTrue(c.equipement.indexOf(m1) > -1, 'character cannot hold magical object');
+
+  c.equip(m2);
+
+  test.assertFalse(c.equipement.indexOf(m2) > -1, 'character can hold more than one magical object');
+});
+
 tests.run();

@@ -1,4 +1,5 @@
 var attackable = require('./Attackable.js');
+const magicalObject = require('./MagicalObject.js');
 var thing = require('./Thing.js');
 
 class Character extends attackable.Attackable {
@@ -12,6 +13,7 @@ class Character extends attackable.Attackable {
     this.healAmount = 1;
 
     this.factions = [];
+    this.equipement = [];
 
     this.hasRangedWeapon = false;
   }
@@ -79,6 +81,14 @@ class Character extends attackable.Attackable {
       if (x.memberOf(this.factions[i]))
         return true;
     return false;
+  }
+
+  equip(x) {
+    for (var i in this.equipement)
+      if (this.equipement[i] instanceof magicalObject.MagicalObject)
+        return;
+
+    this.equipement.push(x);
   }
 }
 
