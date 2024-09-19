@@ -360,4 +360,10 @@ tests.add('Characters can gain any amount of health from the Object, up to its m
   test.assertEquals(c2.health, c2.maxHealth - 200 + m2.maxHealth, 'healing magical object can heal more than its\'s maxium');
 });
 
+tests.add('Healing Magical Objects cannot deal Damage', function(test) {
+  var m = new rpg.HealingMagicalObject(0, 0, 100);
+
+  test.assertTrue(typeof m.attack != 'function', 'healing magical object has attack function');
+});
+
 tests.run();
