@@ -51,7 +51,7 @@
 - [X] Characters can gain any amount of health from the Object, up to its maximum and theirs
 - [X] Healing Magical Objects cannot deal Damage
 - [X] Characters can deal Damage by using a Magical Weapon
-- [ ] These Magical Objects deal a fixed amount of damage when they are used
+- [X] These Magical Objects deal a fixed amount of damage when they are used
 - [ ] The amount of damage is fixed at the time the weapon is created
 - [ ] Every time the weapon is used, its Health is reduced by 1
 - [ ] Magical Weapons cannot give Health to a Character

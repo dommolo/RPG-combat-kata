@@ -379,4 +379,17 @@ tests.add('Characters can deal Damage by using a Magical Weapon', function(test)
   test.assertEquals(c2.health, c2.maxHealth - m.damageAmount, 'magical weapon does not damage correctly');
 });
 
+tests.add('These Magical Objects deal a fixed amount of damage when they are used', function(test) {
+  var c1 = new rpg.Character(0, 0);
+  var c2 = new rpg.Character(0, 0);
+  var m = new rpg.MagicalWeapon(0, 0, 100, 10);
+
+  c2.level = 6;
+
+  c1.equip(m);
+  c1.attack(c2);
+
+  test.assertEquals(c2.health, c2.maxHealth - m.damageAmount, 'magical weapon damage changes based on character level');
+});
+
 tests.run();

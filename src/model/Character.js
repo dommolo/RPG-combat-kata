@@ -28,15 +28,14 @@ class Character extends attackable.Attackable {
     if (this.distanceFrom(x) > this.getMaxAttackRange())
       return;
 
+    if (x instanceof Character && this.isAlliedOf(x))
+        return;
+
     var realDamageAmount = this.damageAmount;
 
     if (this.magicalObject instanceof magicalObject.MagicalObject && this.magicalObject.health > 0)
       realDamageAmount = this.magicalObject.damageAmount;
-
-    if (x instanceof Character) {
-      if (this.isAlliedOf(x))
-        return;
-
+    else if (x instanceof Character) {
       if (x.level >= this.level + 5)
         realDamageAmount *= .5;
       else if (x.level <= this.level - 5)
