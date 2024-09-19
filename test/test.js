@@ -392,4 +392,10 @@ tests.add('These Magical Objects deal a fixed amount of damage when they are use
   test.assertEquals(c2.health, c2.maxHealth - m.damageAmount, 'magical weapon damage changes based on character level');
 });
 
+tests.add('The amount of damage is fixed at the time the weapon is created', function(test) {
+  var m = new rpg.MagicalWeapon(0, 0, 100, 10);
+  
+  test.assertEquals(m.damageAmount, 10, 'damage amount is changed after creation');
+});
+
 tests.run();
