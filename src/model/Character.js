@@ -22,14 +22,11 @@ class Character extends attackable.Attackable {
   gainExp(amount) {
     this.exp += amount;
 
-    if (this.level == 2 && this.exp >= 2000) {
-      this.level = 3;
-      this.exp -= 2000;
-    }
+    var nextLevelExp = this.level * 1000;
 
-    if (this.level == 1 && this.exp >= 1000) {
-      this.level = 2;
-      this.exp -= 1000;
+    if (this.exp >= nextLevelExp) {
+      this.level++;
+      this.exp -= nextLevelExp;
     }
   }
 

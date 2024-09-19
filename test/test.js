@@ -455,4 +455,22 @@ tests.add('Level 2 Characters need to survive an additional 2000 damage points t
   test.assertEquals(c1.level, 3, 'character does not get to level 3 after 2000 additional damages');
 });
 
+tests.add('Level 3 Characters need to survive an additional 3000, and so on', function(test) {
+  var c1 = new rpg.Character(0, 0);
+  var c2 = new rpg.Character(0, 0);
+  var m = new rpg.MagicalWeapon(0, 0, 100000, 10);
+
+  c2.equip(m);
+  c2.healAmount = 10;
+  
+  for (var l = 1; l < 10; l++) {
+    for (var i=0; i<l * 100; i++) {
+      c2.attack(c1);
+      c2.heal(c1);
+    }
+
+    test.assertEquals(c1.level, l+1, 'character does not get to correct level (' + l + ')');
+  }
+});
+
 tests.run();

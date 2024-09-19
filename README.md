@@ -58,7 +58,7 @@
 - [X] Level 1 Characters that survive 1000 damage points gain a level (this may be counted over several battles)
 - [X] A character cannot gain a level while receiving damage, it happens directly afterwards (if the player is still alive)
 - [X] Level 2 Characters need to survive an additional 2000 damage points to gain a level
-- [ ] Level 3 Characters need to survive an additional 3000, and so on
+- [X] Level 3 Characters need to survive an additional 3000, and so on
 - [ ] Level 1 Characters that have ever been part of 3 distinct factions gain a level
 - [ ] Level 2 Characters need to join an additional 3 distinct factions to gain a level
 - [ ] Level 3 Characters need to join an additional 3, and so on
