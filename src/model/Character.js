@@ -12,9 +12,10 @@ class Character extends attackable.Attackable {
     this.healAmount = 1;
 
     this.factions = [];
-    this.equipement = [];
 
     this.hasRangedWeapon = false;
+
+    this.magicalObject = null;
   }
 
   attack(x) {
@@ -28,6 +29,9 @@ class Character extends attackable.Attackable {
       return;
 
     var realDamageAmount = this.damageAmount;
+
+    if (this.magicalObject instanceof magicalObject.MagicalObject && this.magicalObject.health > 0)
+      realDamageAmount = this.magicalObject.damageAmount;
 
     if (x instanceof Character) {
       if (this.isAlliedOf(x))
@@ -83,11 +87,10 @@ class Character extends attackable.Attackable {
   }
 
   equip(x) {
-    for (var i in this.equipement)
-      if (this.equipement[i] instanceof magicalObject.MagicalObject)
-        return;
-
-    this.equipement.push(x);
+    if (x instanceof magicalObject.MagicalObject) {
+      this.magicalObject = x;
+      return;
+    }
   }
 }
 

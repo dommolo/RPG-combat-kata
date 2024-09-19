@@ -5,7 +5,7 @@ class Thing extends attackable.Attackable {
     super(x, y, health);
 
     this.name = name;
-    this.destroyed = false
+    this.destroyed = false;
   }
 
   attacked(x) {

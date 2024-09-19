@@ -47,10 +47,10 @@
 - [X] Magical Objects do not belong to Factions; they are neutral
 - [X] Characters can hold one Magical Object
 - [X] Newly created Characters hold no Magical Object
-- [ ] Characters can gain health from a Healing Magical Object
-- [ ] Characters can gain any amount of health from the Object, up to its maximum and theirs
-- [ ] Healing Magical Objects cannot deal Damage
-- [ ] Characters can deal Damage by using a Magical Weapon.
+- [X] Characters can gain health from a Healing Magical Object
+- [X] Characters can gain any amount of health from the Object, up to its maximum and theirs
+- [X] Healing Magical Objects cannot deal Damage
+- [X] Characters can deal Damage by using a Magical Weapon
 - [ ] These Magical Objects deal a fixed amount of damage when they are used
 - [ ] The amount of damage is fixed at the time the weapon is created
 - [ ] Every time the weapon is used, its Health is reduced by 1

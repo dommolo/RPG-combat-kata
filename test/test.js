@@ -317,11 +317,11 @@ tests.add('Characters can hold one Magical Object', function(test) {
 
   c.equip(m1)
 
-  test.assertTrue(c.equipement.indexOf(m1) > -1, 'character cannot hold magical object');
+  test.assertEquals(c.magicalObject, m1, 'character cannot hold magical object');
 
   c.equip(m2);
 
-  test.assertFalse(c.equipement.indexOf(m2) > -1, 'character can hold more than one magical object');
+  test.assertFalse(c.magicalObject == m1, 'character can hold more than one magical object');
 });
 
 tests.add('Newly created Characters hold no Magical Object', function(test) {
@@ -364,6 +364,19 @@ tests.add('Healing Magical Objects cannot deal Damage', function(test) {
   var m = new rpg.HealingMagicalObject(0, 0, 100);
 
   test.assertTrue(typeof m.attack != 'function', 'healing magical object has attack function');
+});
+
+tests.add('Characters can deal Damage by using a Magical Weapon', function(test) {
+  var c1 = new rpg.Character(0, 0);
+  var c2 = new rpg.Character(0, 0);
+  var m = new rpg.MagicalWeapon(0, 0, 100, 10);
+
+  test.assertTrue(!!m, 'magical weapon created is not valid');
+
+  c1.equip(m);
+  c1.attack(c2);
+
+  test.assertEquals(c2.health, c2.maxHealth - m.damageAmount, 'magical weapon does not damage correctly');
 });
 
 tests.run();

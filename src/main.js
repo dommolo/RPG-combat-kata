@@ -8,5 +8,6 @@ module.exports = {
   Faction: faction.Faction,
   Thing: thing.Thing,
   MagicalObject: magicalObject.MagicalObject,
-  HealingMagicalObject: magicalObject.HealingMagicalObject
+  HealingMagicalObject: magicalObject.HealingMagicalObject,
+  MagicalWeapon: magicalObject.MagicalWeapon
 };

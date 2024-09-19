@@ -30,7 +30,41 @@ class HealingMagicalObject extends MagicalObject {
     }
 }
 
+class MagicalWeapon extends MagicalObject {
+    constructor(x, y, health, damageAmount) {
+        super(x, y, health);
+
+        this.damageAmount = damageAmount;
+    }
+
+    attack(x) {
+        if (x == this)
+          return;
+    
+        if (!(x instanceof attackable.Attackable))
+          return;
+    
+        if (this.distanceFrom(x) > this.getMaxAttackRange())
+          return;
+    
+        var realDamageAmount = this.damageAmount;
+    
+        if (x instanceof Character) {
+          if (this.isAlliedOf(x))
+            return;
+    
+          if (x.level >= this.level + 5)
+            realDamageAmount *= .5;
+          else if (x.level <= this.level - 5)
+            realDamageAmount *= 1.5;
+        }
+    
+        x.attacked(realDamageAmount);
+      }
+}
+
 module.exports = {
     MagicalObject: MagicalObject,
-    HealingMagicalObject: HealingMagicalObject
+    HealingMagicalObject: HealingMagicalObject,
+    MagicalWeapon: MagicalWeapon
 };
