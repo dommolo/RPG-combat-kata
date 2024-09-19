@@ -398,4 +398,15 @@ tests.add('The amount of damage is fixed at the time the weapon is created', fun
   test.assertEquals(m.damageAmount, 10, 'damage amount is changed after creation');
 });
 
+tests.add('Every time the weapon is used, its Health is reduced by 1', function(test) {
+  var c1 = new rpg.Character(0, 0);
+  var c2 = new rpg.Character(0, 0);
+  var m = new rpg.MagicalWeapon(0, 0, 100, 10);
+
+  c1.equip(m);
+  c1.attack(c2);
+
+  test.assertEquals(m.health, m.maxHealth - 1, 'magical weapon is not damaged after use');
+});
+
 tests.run();

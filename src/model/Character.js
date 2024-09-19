@@ -33,9 +33,10 @@ class Character extends attackable.Attackable {
 
     var realDamageAmount = this.damageAmount;
 
-    if (this.magicalObject instanceof magicalObject.MagicalObject && this.magicalObject.health > 0)
+    if (this.magicalObject instanceof magicalObject.MagicalObject && this.magicalObject.health > 0) {
       realDamageAmount = this.magicalObject.damageAmount;
-    else if (x instanceof Character) {
+      this.magicalObject.health--;
+    } else if (x instanceof Character) {
       if (x.level >= this.level + 5)
         realDamageAmount *= .5;
       else if (x.level <= this.level - 5)
