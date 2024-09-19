@@ -415,4 +415,19 @@ tests.add('Magical Weapons cannot give Health to a Character', function(test) {
   test.assertTrue(m.heal == undefined, 'magical weapon has heal function');
 });
 
+tests.add('Level 1 Characters that survive 1000 damage points gain a level (this may be counted over several battles)', function(test) {
+  var c1 = new rpg.Character(0, 0);
+  var c2 = new rpg.Character(0, 0);
+
+  for (var i=0; i<500; i++)
+    c2.attack(c1);
+
+  c2.heal(c1);
+
+  for (var i=0; i<500; i++)
+    c2.attack(c1);
+
+  test.assertEquals(c1.level, 2, 'level is not raised after 1000 damage');
+});
+
 tests.run();

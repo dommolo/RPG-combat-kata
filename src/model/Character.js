@@ -7,6 +7,7 @@ class Character extends attackable.Attackable {
 
     this.alive = true;
     this.level = 1;
+    this.exp = 0;
 
     this.damageAmount = 1;
     this.healAmount = 1;
@@ -16,6 +17,13 @@ class Character extends attackable.Attackable {
     this.hasRangedWeapon = false;
 
     this.magicalObject = null;
+  }
+
+  gainExp(amount) {
+    this.exp += amount;
+
+    if (this.level == 1 && this.exp >= 1000)
+      this.level = 2;
   }
 
   attack(x) {
@@ -51,6 +59,8 @@ class Character extends attackable.Attackable {
 
     if (this.health == 0)
       this.alive = false;
+    else
+      this.gainExp(x);
   }
 
   heal(x) {
