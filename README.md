@@ -54,7 +54,7 @@
 - [X] These Magical Objects deal a fixed amount of damage when they are used
 - [X] The amount of damage is fixed at the time the weapon is created
 - [X] Every time the weapon is used, its Health is reduced by 1
-- [ ] Magical Weapons cannot give Health to a Character
+- [X] Magical Weapons cannot give Health to a Character
 - [ ] Level 1 Characters that survive 1000 damage points gain a level (this may be counted over several battles)
 - [ ] A character cannot gain a level while receiving damage, it happens directly afterwards (if the player is still alive)
 - [ ] Level 2 Characters need to survive an additional 2000 damage points to gain a level

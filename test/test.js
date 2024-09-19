@@ -409,4 +409,10 @@ tests.add('Every time the weapon is used, its Health is reduced by 1', function(
   test.assertEquals(m.health, m.maxHealth - 1, 'magical weapon is not damaged after use');
 });
 
+tests.add('Magical Weapons cannot give Health to a Character', function(test) {
+  var m = new rpg.MagicalWeapon(0, 0, 100, 10);
+
+  test.assertTrue(m.heal == undefined, 'magical weapon has heal function');
+});
+
 tests.run();
