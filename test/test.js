@@ -430,4 +430,14 @@ tests.add('Level 1 Characters that survive 1000 damage points gain a level (this
   test.assertEquals(c1.level, 2, 'level is not raised after 1000 damage');
 });
 
+tests.add('A character cannot gain a level while receiving damage, it happens directly afterwards (if the player is still alive)', function(test) {
+  var c1 = new rpg.Character(0, 0);
+  var c2 = new rpg.Character(0, 0);
+
+  for (var i=0; i<1000; i++)
+    c2.attack(c1);
+
+  test.assertFalse(c1.level == 2, 'character gains level after death');
+});
+
 tests.run();
