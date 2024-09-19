@@ -419,13 +419,10 @@ tests.add('Level 1 Characters that survive 1000 damage points gain a level (this
   var c1 = new rpg.Character(0, 0);
   var c2 = new rpg.Character(0, 0);
 
-  for (var i=0; i<500; i++)
+  for (var i=0; i<1000; i++) {
     c2.attack(c1);
-
-  c2.heal(c1);
-
-  for (var i=0; i<500; i++)
-    c2.attack(c1);
+    c2.heal(c1);
+  }
 
   test.assertEquals(c1.level, 2, 'level is not raised after 1000 damage');
 });
@@ -438,6 +435,24 @@ tests.add('A character cannot gain a level while receiving damage, it happens di
     c2.attack(c1);
 
   test.assertFalse(c1.level == 2, 'character gains level after death');
+});
+
+tests.add('Level 2 Characters need to survive an additional 2000 damage points to gain a level', function(test) {
+  var c1 = new rpg.Character(0, 0);
+  var c2 = new rpg.Character(0, 0);
+
+  c1.level = 2;
+
+  for (var i=0; i<1999; i++) {
+    c2.attack(c1);
+    c2.heal(c1);
+  }
+
+  test.assertEquals(c1.level, 2, 'character get to level 3 after less than 2000 additional damages');
+
+  c2.attack(c1);
+
+  test.assertEquals(c1.level, 3, 'character does not get to level 3 after 2000 additional damages');
 });
 
 tests.run();
