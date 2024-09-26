@@ -12,7 +12,8 @@ class Character extends attackable.Attackable {
     this.damageAmount = 1;
     this.healAmount = 1;
 
-    this.factions = [];
+    this.factions = new Set();
+    this.pastFactions = new Set();
 
     this.hasRangedWeapon = false;
 
@@ -28,6 +29,10 @@ class Character extends attackable.Attackable {
       this.level++;
       this.exp -= nextLevelExp;
     }
+  }
+
+  gainLevel() {
+    this.level++;
   }
 
   attack(x) {
@@ -75,29 +80,30 @@ class Character extends attackable.Attackable {
     this.healed(x.healAmount);
   }
 
-  join(f) {
-    this.factions.push(f);
-  }
-
   getMaxAttackRange() {
     return this.hasRangedWeapon ? 20 : 2;
   }
 
+  join(f) {
+    this.factions.add(f);
+
+    if (this.level == 1 && this.factions.size + this.pastFactions.size == 3)
+      this.gainLevel();
+  }
+
   leave(f) {
-    var index = this.factions.indexOf(f);
-    if (index > -1)
-      this.factions.splice(index, 1);
+    if (this.factions.has(f))
+      this.factions.delete(f);
+
+    this.pastFactions.add(f);
   }
 
   memberOf(f) {
-    return this.factions.indexOf(f) > -1;
+    return this.factions.has(f);
   }
 
   isAlliedOf(x) {
-    for (var i in this.factions)
-      if (x.memberOf(this.factions[i]))
-        return true;
-    return false;
+    return Array.from(this.factions).filter(f => x.factions.has(f)).length > 0;
   }
 
   equip(x) {

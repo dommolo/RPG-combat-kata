@@ -155,7 +155,7 @@ tests.add('Characters may belong to one or more Factions', function (test) {
 tests.add('New Characters belong to no Faction', function (test) {
   var c = new rpg.Character(0, 0);
 
-  test.assertEquals(c.factions.length, 0, 'new characters belong to one or more factions');
+  test.assertEquals(c.factions.size, 0, 'new characters belong to one or more factions');
 });
 
 tests.add('A Character may Leave one or more Factions', function (test) {
@@ -471,6 +471,19 @@ tests.add('Level 3 Characters need to survive an additional 3000, and so on', fu
 
     test.assertEquals(c1.level, l+1, 'character does not get to correct level (' + l + ')');
   }
+});
+
+tests.add('Level 1 Characters that have ever been part of 3 distinct factions gain a level', function(test) {
+  var c = new rpg.Character(0, 0);
+  var f1 = new rpg.Faction();
+  var f2 = new rpg.Faction();
+  var f3 = new rpg.Faction();
+
+  c.join(f1);
+  c.join(f2);
+  c.join(f3);
+
+  test.assertEquals(c.level, 2, 'character does not gain level after joining 3 different factions');
 });
 
 tests.run();
