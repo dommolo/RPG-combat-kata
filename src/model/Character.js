@@ -89,6 +89,9 @@ class Character extends attackable.Attackable {
 
     if (this.level == 1 && this.factions.size + this.pastFactions.size == 3)
       this.gainLevel();
+
+    if (this.level == 2 && this.factions.size + this.pastFactions.size == 6)
+      this.gainLevel();
   }
 
   leave(f) {

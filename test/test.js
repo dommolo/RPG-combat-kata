@@ -486,4 +486,13 @@ tests.add('Level 1 Characters that have ever been part of 3 distinct factions ga
   test.assertEquals(c.level, 2, 'character does not gain level after joining 3 different factions');
 });
 
+tests.add('Level 2 Characters need to join an additional 3 distinct factions to gain a level', function(test) {
+  var c = new rpg.Character(0, 0);
+  
+  for (var i=0; i<6; i++)
+    c.join(new rpg.Faction());
+
+  test.assertEquals(c.level, 3, 'character does not gain another level after joining 3 more different factions');
+});
+
 tests.run();

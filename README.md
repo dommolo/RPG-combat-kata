@@ -60,7 +60,7 @@
 - [X] Level 2 Characters need to survive an additional 2000 damage points to gain a level
 - [X] Level 3 Characters need to survive an additional 3000, and so on
 - [X] Level 1 Characters that have ever been part of 3 distinct factions gain a level
-- [ ] Level 2 Characters need to join an additional 3 distinct factions to gain a level
+- [X] Level 2 Characters need to join an additional 3 distinct factions to gain a level
 - [ ] Level 3 Characters need to join an additional 3, and so on
 - [ ] From Level 6 on, a Character maximum Health is 1500
 - [ ] The maximum Level for Characters is 10
