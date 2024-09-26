@@ -492,7 +492,21 @@ tests.add('Level 2 Characters need to join an additional 3 distinct factions to 
   for (var i=0; i<6; i++)
     c.join(new rpg.Faction());
 
-  test.assertEquals(c.level, 3, 'character does not gain another level after joining 3 more different factions');
+  test.assertEquals(c.level, 3, 'character level 2 does not gain another level after joining 3 more different factions');
+});
+
+tests.add('Level 3 Characters need to join an additional 3, and so on', function(test) {
+  var c = new rpg.Character(0, 0);
+  
+  for (var i=0; i<9; i++)
+    c.join(new rpg.Faction());
+
+  test.assertEquals(c.level, 4, 'character level 3 does not gain another level after joining 3 more different factions');
+
+  for (var i=0; i<3; i++)
+    c.join(new rpg.Faction());
+
+  test.assertEquals(c.level, 5, 'character does not gain another level every 3 more different factions');
 });
 
 tests.run();
