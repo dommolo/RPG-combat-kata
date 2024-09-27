@@ -32,6 +32,9 @@ class Character extends attackable.Attackable {
   }
 
   gainLevel() {
+    if (this.level == 10)
+      return;
+    
     this.level++;
 
     if (this.level == 6)

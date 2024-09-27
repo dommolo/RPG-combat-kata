@@ -523,4 +523,13 @@ tests.add('From Level 6 on, a Character maximum Health is 1500', function(test) 
   test.assertEquals(c.maxHealth, 1500, 'character max health is not 1500');
 });
 
+tests.add('The maximum Level for Characters is 10', function(test) {
+  var c = new rpg.Character(0, 0);
+
+  for (var i=0; i<10; i++)
+    c.gainLevel();
+
+  test.assertEquals(c.level, 10, 'character level is more than 10');
+});
+
 tests.run();

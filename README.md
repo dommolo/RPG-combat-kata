@@ -63,4 +63,4 @@
 - [X] Level 2 Characters need to join an additional 3 distinct factions to gain a level
 - [X] Level 3 Characters need to join an additional 3, and so on
 - [X] From Level 6 on, a Character maximum Health is 1500
-- [ ] The maximum Level for Characters is 10
+- [X] The maximum Level for Characters is 10
