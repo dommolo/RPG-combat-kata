@@ -89,15 +89,19 @@ tests.add('A Character cannot Deal Damage to itself', function (test) {
 tests.add('If the target is 5 or more Levels above the attacker, Damage is reduced by 50%', function (test) {
   var c1 = new rpg.Character(), c2 = new rpg.Character(0, 0);
 
-  c2.level = 6;
+  for (var i=1; i<6; i++)
+    c2.gainLevel();
   c1.attack(c2);
 
   test.assertEquals(c2.health, 1000 - c1.damageAmount * .5, 'damage is not reduced by 50%');
 });
 
 tests.add('If the target is 5 or more Levels below the attacker, Damage is increased by 50%', function (test) {
-  var c1 = new rpg.Character(), c2 = new rpg.Character(0, 0);
-  c2.level = 6;
+  var c1 = new rpg.Character();
+  var c2 = new rpg.Character(0, 0);
+
+  for (var i=1; i<6; i++)
+    c2.gainLevel();
   c2.attack(c1);
 
   test.assertEquals(c1.health, 1000 - c2.damageAmount * 1.5, 'damage is not increased by 50%');
@@ -384,7 +388,8 @@ tests.add('These Magical Objects deal a fixed amount of damage when they are use
   var c2 = new rpg.Character(0, 0);
   var m = new rpg.MagicalWeapon(0, 0, 100, 10);
 
-  c2.level = 6;
+  for (var i=1; i<6; i++)
+    c1.gainLevel();
 
   c1.equip(m);
   c1.attack(c2);
@@ -441,7 +446,7 @@ tests.add('Level 2 Characters need to survive an additional 2000 damage points t
   var c1 = new rpg.Character(0, 0);
   var c2 = new rpg.Character(0, 0);
 
-  c1.level = 2;
+  c1.gainLevel();
 
   for (var i=0; i<1999; i++) {
     c2.attack(c1);
@@ -507,6 +512,15 @@ tests.add('Level 3 Characters need to join an additional 3, and so on', function
     c.join(new rpg.Faction());
 
   test.assertEquals(c.level, 5, 'character does not gain another level every 3 more different factions');
+});
+
+tests.add('From Level 6 on, a Character maximum Health is 1500', function(test) {
+  var c = new rpg.Character(0, 0);
+
+  for (var i=1; i<6; i++)
+    c.gainLevel();
+
+  test.assertEquals(c.maxHealth, 1500, 'character max health is not 1500');
 });
 
 tests.run();

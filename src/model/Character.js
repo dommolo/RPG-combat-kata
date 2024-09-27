@@ -33,6 +33,9 @@ class Character extends attackable.Attackable {
 
   gainLevel() {
     this.level++;
+
+    if (this.level == 6)
+      this.maxHealth = 1500;
   }
 
   attack(x) {
